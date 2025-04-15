@@ -1894,6 +1894,258 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module">
+        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.module.js';
+        import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.132.2/examples/jsm/controls/OrbitControls.js';
+
+        // Create a 3D model class for the Ghibli character
+        class GhibliCharacter {
+          constructor(containerId, imageUrl) {
+            this.containerId = containerId;
+            this.imageUrl = imageUrl;
+            this.container = document.getElementById(containerId);
+            this.width = this.container.clientWidth;
+            this.height = this.container.clientHeight;
+            this.scene = null;
+            this.camera = null;
+            this.renderer = null;
+            this.character = null;
+            this.mixer = null;
+            this.clock = new THREE.Clock();
+            this.animations = {};
+            this.currentAnimation = null;
+            
+            this.init();
+          }
+          
+          init() {
+            // Create scene
+            this.scene = new THREE.Scene();
+            
+            // Create camera
+            this.camera = new THREE.PerspectiveCamera(75, this.width / this.height, 0.1, 1000);
+            this.camera.position.z = 5;
+            
+            // Create renderer
+            this.renderer = new THREE.WebGLRenderer({ 
+              antialias: true,
+              alpha: true 
+            });
+            this.renderer.setSize(this.width, this.height);
+            this.renderer.setClearColor(0x000000, 0);
+            this.container.appendChild(this.renderer.domElement);
+            
+            // Add lights
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            this.scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(1, 1, 1);
+            this.scene.add(directionalLight);
+            
+            // Add controls
+            const controls = new OrbitControls(this.camera, this.renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.enableZoom = false;
+            
+            // Create character
+            this.createCharacter();
+            
+            // Handle window resize
+            window.addEventListener('resize', () => this.onWindowResize());
+            
+            // Start animation loop
+            this.animate();
+          }
+          
+          createCharacter() {
+            // Create a plane geometry for the character
+            const geometry = new THREE.PlaneGeometry(2.5, 5);
+            
+            // Load the texture
+            const textureLoader = new THREE.TextureLoader();
+            const texture = textureLoader.load(this.imageUrl);
+            
+            // Create material with the texture
+            const material = new THREE.MeshBasicMaterial({
+              map: texture,
+              transparent: true,
+              side: THREE.DoubleSide
+            });
+            
+            // Create the character mesh
+            this.character = new THREE.Mesh(geometry, material);
+            this.scene.add(this.character);
+            
+            // Create animations
+            this.createAnimations();
+          }
+          
+          createAnimations() {
+            // Idle animation - subtle breathing effect
+            const idleAnimation = () => {
+              const time = this.clock.getElapsedTime();
+              this.character.scale.set(
+                1 + Math.sin(time * 0.5) * 0.02,
+                1 + Math.sin(time * 0.5) * 0.02,
+                1
+              );
+            };
+            
+            // Wave animation
+            const waveAnimation = () => {
+              const time = this.clock.getElapsedTime();
+              this.character.rotation.y = Math.sin(time * 2) * 0.2;
+              this.character.position.x = Math.sin(time * 2) * 0.2;
+            };
+            
+            // Data analysis animation
+            const dataAnalysisAnimation = () => {
+              const time = this.clock.getElapsedTime();
+              // Move up and down slightly while "analyzing data"
+              this.character.position.y = Math.sin(time * 1.5) * 0.15;
+              // Slight rotation to suggest working
+              this.character.rotation.z = Math.sin(time * 0.8) * 0.05;
+            };
+            
+            // Coding animation
+            const codingAnimation = () => {
+              const time = this.clock.getElapsedTime();
+              // Quick small movements like typing
+              this.character.position.x = Math.sin(time * 8) * 0.05;
+              this.character.position.y = Math.sin(time * 4) * 0.05;
+            };
+            
+            // AI/ML animation
+            const aiAnimation = () => {
+              const time = this.clock.getElapsedTime();
+              // Circular motion suggesting AI processing
+              this.character.position.x = Math.sin(time) * 0.3;
+              this.character.position.z = Math.cos(time) * 0.3;
+              this.character.rotation.y = time * 0.5;
+            };
+            
+            // Store animations
+            this.animations = {
+              idle: idleAnimation,
+              wave: waveAnimation,
+              dataAnalysis: dataAnalysisAnimation,
+              coding: codingAnimation,
+              ai: aiAnimation
+            };
+            
+            // Set default animation
+            this.setAnimation('wave');
+          }
+          
+          setAnimation(animationName) {
+            if (this.animations[animationName]) {
+              this.currentAnimation = this.animations[animationName];
+              return true;
+            }
+            return false;
+          }
+          
+          onWindowResize() {
+            this.width = this.container.clientWidth;
+            this.height = this.container.clientHeight;
+            
+            this.camera.aspect = this.width / this.height;
+            this.camera.updateProjectionMatrix();
+            
+            this.renderer.setSize(this.width, this.height);
+          }
+          
+          animate() {
+            requestAnimationFrame(() => this.animate());
+            
+            // Run current animation
+            if (this.currentAnimation) {
+              this.currentAnimation();
+            }
+            
+            this.renderer.render(this.scene, this.camera);
+          }
+        }
+
+        // Function to initialize the character when the DOM is loaded
+        function initGhibliCharacter() {
+          // Create character container if it doesn't exist
+          if (!document.getElementById('ghibli-character-container')) {
+            const container = document.createElement('div');
+            container.id = 'ghibli-character-container';
+            container.style.position = 'absolute';
+            container.style.top = '50%';
+            container.style.right = '5%';
+            container.style.width = '250px';
+            container.style.height = '500px';
+            container.style.transform = 'translateY(-50%)';
+            container.style.zIndex = '10';
+            document.querySelector('.hero').appendChild(container);
+          }
+          
+          // Initialize the character
+          const character = new GhibliCharacter('ghibli-character-container', 'ghibli_character.png');
+          
+          // Add event listeners to change animations based on section visibility
+          document.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const heroSection = document.querySelector('.hero');
+            const aboutSection = document.getElementById('about');
+            const experienceSection = document.getElementById('experience');
+            const projectsSection = document.getElementById('projects');
+            
+            if (isElementInViewport(heroSection)) {
+              character.setAnimation('wave');
+            } else if (isElementInViewport(aboutSection)) {
+              character.setAnimation('idle');
+            } else if (isElementInViewport(experienceSection)) {
+              character.setAnimation('dataAnalysis');
+            } else if (isElementInViewport(projectsSection)) {
+              character.setAnimation('coding');
+            } else {
+              character.setAnimation('idle');
+            }
+          });
+          
+          // Add skill-based animation triggers
+          const skillItems = document.querySelectorAll('.skill-item');
+          skillItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+              const skillName = item.querySelector('.skill-info span:first-child').textContent.toLowerCase();
+              
+              if (skillName.includes('python') || skillName.includes('programming')) {
+                character.setAnimation('coding');
+              } else if (skillName.includes('data') || skillName.includes('analysis')) {
+                character.setAnimation('dataAnalysis');
+              } else if (skillName.includes('machine') || skillName.includes('ai') || skillName.includes('ml')) {
+                character.setAnimation('ai');
+              }
+            });
+            
+            item.addEventListener('mouseleave', () => {
+              character.setAnimation('idle');
+            });
+          });
+          
+          return character;
+        }
+
+        // Helper function to check if an element is in the viewport
+        function isElementInViewport(el) {
+          const rect = el.getBoundingClientRect();
+          return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+          );
+        }
+
+        // Initialize when the DOM is loaded
+        window.addEventListener('DOMContentLoaded', initGhibliCharacter);
+    </script>
     <script>
         // Wait for page to load
         window.addEventListener('load', function() {

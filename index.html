@@ -840,6 +840,43 @@
             --card-bg: #1e1e1e;
         }
         
+        /* Dashboard Styles */
+        .dashboard-container {
+          margin-top: 3rem;
+          padding: 2rem;
+          background-color: var(--card-bg);
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
+        }
+        
+        .dashboard-title {
+          font-size: 1.8rem;
+          margin-bottom: 1rem;
+          color: var(--primary-color);
+        }
+        
+        .dashboard-desc {
+          margin-bottom: 2rem;
+          color: var(--text-color);
+        }
+        
+        .charts-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+        }
+        
+        .chart-section {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .chart-section h4 {
+          margin-bottom: 1rem;
+          color: var(--accent-color);
+        }
+        
         /* Responsive Design */
         @media screen and (max-width: 1024px) {
             .about-content,
@@ -869,6 +906,10 @@
             
             .timeline-item:nth-child(even)::after {
                 left: 15px;
+            }
+            
+            .charts-container {
+              grid-template-columns: 1fr;
             }
         }
         
@@ -1012,6 +1053,7 @@
                 </div>
             </div>
         </div>
+        <div id="ghibli-character-container"></div>
     </section>
 
     <!-- About Section -->
@@ -1180,6 +1222,7 @@ def train_model(X, y):<br>
                             <li>Configured and maintained an Electronic Logbook (ELB) system to monitor and streamline all operational processes.</li>
                             <li>Trained team members on Power BI and data automation techniques, leading to improved reporting accuracy and significant time savings across departments.</li>
                         </ul>
+                        <div id="shipping-dashboard" class="dashboard-container"></div>
                     </div>
                 </div>
                 <div class="timeline-item animate">
@@ -1192,6 +1235,7 @@ def train_model(X, y):<br>
                             <li>Designed OCR-based Python scripts to extract unstructured data from PDFs and images, achieving 90% accuracy in data capture.</li>
                             <li>Conducted competitive analysis on 700,000–1,000,000 rows of data, delivering actionable insights to Fortune 500 clients.</li>
                         </ul>
+                        <div id="competitive-dashboard" class="dashboard-container"></div>
                     </div>
                 </div>
                 <div class="timeline-item animate">
@@ -1203,6 +1247,7 @@ def train_model(X, y):<br>
                             <li>Automated cross-functional data extraction and key metric tracking using Google Forms, Spreadsheets, Python, and Data Studio—reducing reporting errors by 35%.</li>
                             <li>Implemented automation that boosted production efficiency by 15%.</li>
                         </ul>
+                        <div id="manufacturing-dashboard" class="dashboard-container"></div>
                     </div>
                 </div>
                 <div class="timeline-item animate">
@@ -1419,6 +1464,9 @@ def train_model(X, y):<br>
 
     <!-- Particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- Chart.js for Data Visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- Three.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -1650,7 +1698,624 @@ def train_model(X, y):<br>
                     submitBtn.disabled = false;
                 }, 1500);
             });
+            
+            // Initialize Data Visualizations
+            initializeVisualizations();
         });
+        
+        // Shipping Industry Dashboard
+        function createShippingDashboard(containerId) {
+          // Create the dashboard container
+          const container = document.getElementById(containerId);
+          
+          // Create canvas elements for charts
+          const procurementCanvas = document.createElement('canvas');
+          procurementCanvas.id = 'procurementChart';
+          procurementCanvas.width = 400;
+          procurementCanvas.height = 250;
+          
+          const equipmentCanvas = document.createElement('canvas');
+          equipmentCanvas.id = 'equipmentChart';
+          equipmentCanvas.width = 400;
+          equipmentCanvas.height = 250;
+          
+          const elbCanvas = document.createElement('canvas');
+          elbCanvas.id = 'elbChart';
+          elbCanvas.width = 400;
+          elbCanvas.height = 250;
+          
+          // Create dashboard layout
+          const dashboardTitle = document.createElement('h3');
+          dashboardTitle.textContent = 'Shipping Industry Analytics';
+          dashboardTitle.className = 'dashboard-title';
+          
+          const dashboardDesc = document.createElement('p');
+          dashboardDesc.textContent = 'Interactive visualizations of fleet data, procurement metrics, and equipment performance.';
+          dashboardDesc.className = 'dashboard-desc';
+          
+          const chartsContainer = document.createElement('div');
+          chartsContainer.className = 'charts-container';
+          
+          // Create chart sections
+          const procurementSection = document.createElement('div');
+          procurementSection.className = 'chart-section';
+          const procurementTitle = document.createElement('h4');
+          procurementTitle.textContent = 'Procurement Analysis';
+          procurementSection.appendChild(procurementTitle);
+          procurementSection.appendChild(procurementCanvas);
+          
+          const equipmentSection = document.createElement('div');
+          equipmentSection.className = 'chart-section';
+          const equipmentTitle = document.createElement('h4');
+          equipmentTitle.textContent = 'Equipment Performance';
+          equipmentSection.appendChild(equipmentTitle);
+          equipmentSection.appendChild(equipmentCanvas);
+          
+          const elbSection = document.createElement('div');
+          elbSection.className = 'chart-section';
+          const elbTitle = document.createElement('h4');
+          elbTitle.textContent = 'ELB Compliance Tracking';
+          elbSection.appendChild(elbTitle);
+          elbSection.appendChild(elbCanvas);
+          
+          // Assemble the dashboard
+          chartsContainer.appendChild(procurementSection);
+          chartsContainer.appendChild(equipmentSection);
+          chartsContainer.appendChild(elbSection);
+          
+          container.appendChild(dashboardTitle);
+          container.appendChild(dashboardDesc);
+          container.appendChild(chartsContainer);
+          
+          // Create the charts
+          createProcurementChart();
+          createEquipmentChart();
+          createELBChart();
+        }
+
+        function createProcurementChart() {
+          const ctx = document.getElementById('procurementChart').getContext('2d');
+          
+          const data = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+              label: 'Procurement Cost (USD)',
+              data: [125000, 118000, 132000, 145000, 138000, 129000],
+              backgroundColor: 'rgba(26, 35, 126, 0.2)',
+              borderColor: 'rgba(26, 35, 126, 1)',
+              borderWidth: 2,
+              tension: 0.4
+            }, {
+              label: 'Cost Savings (USD)',
+              data: [12500, 15400, 18200, 21500, 24800, 28200],
+              backgroundColor: 'rgba(0, 121, 107, 0.2)',
+              borderColor: 'rgba(0, 121, 107, 1)',
+              borderWidth: 2,
+              tension: 0.4
+            }]
+          };
+          
+          const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'top',
+              },
+              tooltip: {
+                mode: 'index',
+                intersect: false,
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          };
+          
+          new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+          });
+        }
+
+        function createEquipmentChart() {
+          const ctx = document.getElementById('equipmentChart').getContext('2d');
+          
+          const data = {
+            labels: ['Engines', 'Pumps', 'Generators', 'HVAC', 'Navigation', 'Other'],
+            datasets: [{
+              label: 'Maintenance Frequency',
+              data: [28, 35, 15, 22, 12, 18],
+              backgroundColor: [
+                'rgba(26, 35, 126, 0.7)',
+                'rgba(0, 121, 107, 0.7)',
+                'rgba(255, 109, 0, 0.7)',
+                'rgba(156, 39, 176, 0.7)',
+                'rgba(3, 169, 244, 0.7)',
+                'rgba(139, 195, 74, 0.7)'
+              ],
+              borderWidth: 1
+            }]
+          };
+          
+          const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'right',
+              }
+            }
+          };
+          
+          new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: options
+          });
+        }
+
+        function createELBChart() {
+          const ctx = document.getElementById('elbChart').getContext('2d');
+          
+          const data = {
+            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+            datasets: [{
+              label: 'Compliance Rate (%)',
+              data: [78, 85, 92, 97],
+              backgroundColor: 'rgba(255, 109, 0, 0.2)',
+              borderColor: 'rgba(255, 109, 0, 1)',
+              borderWidth: 2
+            }, {
+              label: 'Data Accuracy (%)',
+              data: [82, 88, 94, 98],
+              backgroundColor: 'rgba(3, 169, 244, 0.2)',
+              borderColor: 'rgba(3, 169, 244, 1)',
+              borderWidth: 2
+            }]
+          };
+          
+          const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'top',
+              }
+            },
+            scales: {
+              y: {
+                min: 70,
+                max: 100
+              }
+            }
+          };
+          
+          new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+          });
+        }
+
+        // Manufacturing Industry Dashboard
+        function createManufacturingDashboard(containerId) {
+          // Create the dashboard container
+          const container = document.getElementById(containerId);
+          
+          // Create canvas elements for charts
+          const productionCanvas = document.createElement('canvas');
+          productionCanvas.id = 'productionChart';
+          productionCanvas.width = 400;
+          productionCanvas.height = 250;
+          
+          const distributionCanvas = document.createElement('canvas');
+          distributionCanvas.id = 'distributionChart';
+          distributionCanvas.width = 400;
+          distributionCanvas.height = 250;
+          
+          const efficiencyCanvas = document.createElement('canvas');
+          efficiencyCanvas.id = 'efficiencyChart';
+          efficiencyCanvas.width = 400;
+          efficiencyCanvas.height = 250;
+          
+          // Create dashboard layout
+          const dashboardTitle = document.createElement('h3');
+          dashboardTitle.textContent = 'Manufacturing Analytics';
+          dashboardTitle.className = 'dashboard-title';
+          
+          const dashboardDesc = document.createElement('p');
+          dashboardDesc.textContent = 'Production metrics, regional distribution, and efficiency analysis for plastic manufacturing.';
+          dashboardDesc.className = 'dashboard-desc';
+          
+          const chartsContainer = document.createElement('div');
+          chartsContainer.className = 'charts-container';
+          
+          // Create chart sections
+          const productionSection = document.createElement('div');
+          productionSection.className = 'chart-section';
+          const productionTitle = document.createElement('h4');
+          productionTitle.textContent = 'Production by Product Type';
+          productionSection.appendChild(productionTitle);
+          productionSection.appendChild(productionCanvas);
+          
+          const distributionSection = document.createElement('div');
+          distributionSection.className = 'chart-section';
+          const distributionTitle = document.createElement('h4');
+          distributionTitle.textContent = 'Regional Distribution';
+          distributionSection.appendChild(distributionTitle);
+          distributionSection.appendChild(distributionCanvas);
+          
+          const efficiencySection = document.createElement('div');
+          efficiencySection.className = 'chart-section';
+          const efficiencyTitle = document.createElement('h4');
+          efficiencyTitle.textContent = 'Production Efficiency';
+          efficiencySection.appendChild(efficiencyTitle);
+          efficiencySection.appendChild(efficiencyCanvas);
+          
+          // Assemble the dashboard
+          chartsContainer.appendChild(productionSection);
+          chartsContainer.appendChild(distributionSection);
+          chartsContainer.appendChild(efficiencySection);
+          
+          container.appendChild(dashboardTitle);
+          container.appendChild(dashboardDesc);
+          container.appendChild(chartsContainer);
+          
+          // Create the charts
+          createProductionChart();
+          createDistributionChart();
+          createEfficiencyChart();
+        }
+
+        function createProductionChart() {
+          const ctx = document.getElementById('productionChart').getContext('2d');
+          
+          const data = {
+            labels: ['PVC', 'HDPE', 'LDPE', 'Dripping', 'Other'],
+            datasets: [{
+              label: 'Production Volume (tons)',
+              data: [1250, 980, 750, 620, 480],
+              backgroundColor: [
+                'rgba(26, 35, 126, 0.7)',
+                'rgba(0, 121, 107, 0.7)',
+                'rgba(255, 109, 0, 0.7)',
+                'rgba(156, 39, 176, 0.7)',
+                'rgba(3, 169, 244, 0.7)'
+              ],
+              borderWidth: 1
+            }]
+          };
+          
+          const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'right',
+              }
+            }
+          };
+          
+          new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: options
+          });
+        }
+
+        function createDistributionChart() {
+          const ctx = document.getElementById('distributionChart').getContext('2d');
+          
+          const data = {
+            labels: ['North', 'South', 'East', 'West', 'Central'],
+            datasets: [{
+              label: 'Distribution (tons)',
+              data: [850, 1200, 720, 950, 680],
+              backgroundColor: 'rgba(0, 121, 107, 0.2)',
+              borderColor: 'rgba(0, 121, 107, 1)',
+              borderWidth: 2
+            }]
+          };
+          
+          const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            plugins: {
+              legend: {
+                display: false,
+              }
+            },
+            scales: {
+              x: {
+                beginAtZero: true
+              }
+            }
+          };
+          
+          new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+          });
+        }
+
+        function createEfficiencyChart() {
+          const ctx = document.getElementById('efficiencyChart').getContext('2d');
+          
+          const data = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+              label: 'Efficiency (%)',
+              data: [72, 75, 78, 82, 85, 88, 90, 91, 92, 93, 94, 95],
+              backgroundColor: 'rgba(255, 109, 0, 0.2)',
+              borderColor: 'rgba(255, 109, 0, 1)',
+              borderWidth: 2,
+              tension: 0.4,
+              fill: true
+            }]
+          };
+          
+          const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false,
+              }
+            },
+            scales: {
+              y: {
+                min: 70,
+                max: 100
+              }
+            }
+          };
+          
+          new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+          });
+        }
+
+        // Competitive Analysis Dashboard
+        function createCompetitiveAnalysisDashboard(containerId) {
+          // Create the dashboard container
+          const container = document.getElementById(containerId);
+          
+          // Create canvas elements for charts
+          const priceComparisonCanvas = document.createElement('canvas');
+          priceComparisonCanvas.id = 'priceComparisonChart';
+          priceComparisonCanvas.width = 400;
+          priceComparisonCanvas.height = 250;
+          
+          const featureComparisonCanvas = document.createElement('canvas');
+          featureComparisonCanvas.id = 'featureComparisonChart';
+          featureComparisonCanvas.width = 400;
+          featureComparisonCanvas.height = 250;
+          
+          const marketShareCanvas = document.createElement('canvas');
+          marketShareCanvas.id = 'marketShareChart';
+          marketShareCanvas.width = 400;
+          marketShareCanvas.height = 250;
+          
+          // Create dashboard layout
+          const dashboardTitle = document.createElement('h3');
+          dashboardTitle.textContent = 'Competitive Analysis';
+          dashboardTitle.className = 'dashboard-title';
+          
+          const dashboardDesc = document.createElement('p');
+          dashboardDesc.textContent = 'Price comparison, feature analysis, and market share for consumer electronics in South Asian markets.';
+          dashboardDesc.className = 'dashboard-desc';
+          
+          const chartsContainer = document.createElement('div');
+          chartsContainer.className = 'charts-container';
+          
+          // Create chart sections
+          const priceComparisonSection = document.createElement('div');
+          priceComparisonSection.className = 'chart-section';
+          const priceComparisonTitle = document.createElement('h4');
+          priceComparisonTitle.textContent = 'Price Comparison';
+          priceComparisonSection.appendChild(priceComparisonTitle);
+          priceComparisonSection.appendChild(priceComparisonCanvas);
+          
+          const featureComparisonSection = document.createElement('div');
+          featureComparisonSection.className = 'chart-section';
+          const featureComparisonTitle = document.createElement('h4');
+          featureComparisonTitle.textContent = 'Feature Comparison';
+          featureComparisonSection.appendChild(featureComparisonTitle);
+          featureComparisonSection.appendChild(featureComparisonCanvas);
+          
+          const marketShareSection = document.createElement('div');
+          marketShareSection.className = 'chart-section';
+          const marketShareTitle = document.createElement('h4');
+          marketShareTitle.textContent = 'Market Share';
+          marketShareSection.appendChild(marketShareTitle);
+          marketShareSection.appendChild(marketShareCanvas);
+          
+          // Assemble the dashboard
+          chartsContainer.appendChild(priceComparisonSection);
+          chartsContainer.appendChild(featureComparisonSection);
+          chartsContainer.appendChild(marketShareSection);
+          
+          container.appendChild(dashboardTitle);
+          container.appendChild(dashboardDesc);
+          container.appendChild(chartsContainer);
+          
+          // Create the charts
+          createPriceComparisonChart();
+          createFeatureComparisonChart();
+          createMarketShareChart();
+        }
+
+        function createPriceComparisonChart() {
+          const ctx = document.getElementById('priceComparisonChart').getContext('2d');
+          
+          const data = {
+            labels: ['Entry', 'Mid-range', 'Premium', 'Ultra Premium'],
+            datasets: [{
+              label: 'Brand A',
+              data: [199, 399, 699, 999],
+              backgroundColor: 'rgba(26, 35, 126, 0.2)',
+              borderColor: 'rgba(26, 35, 126, 1)',
+              borderWidth: 2
+            }, {
+              label: 'Brand B',
+              data: [179, 379, 649, 949],
+              backgroundColor: 'rgba(0, 121, 107, 0.2)',
+              borderColor: 'rgba(0, 121, 107, 1)',
+              borderWidth: 2
+            }, {
+              label: 'Brand C',
+              data: [219, 419, 729, 1049],
+              backgroundColor: 'rgba(255, 109, 0, 0.2)',
+              borderColor: 'rgba(255, 109, 0, 1)',
+              borderWidth: 2
+            }]
+          };
+          
+          const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'top',
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Price (USD)'
+                }
+              }
+            }
+          };
+          
+          new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+          });
+        }
+
+        function createFeatureComparisonChart() {
+          const ctx = document.getElementById('featureComparisonChart').getContext('2d');
+          
+          const data = {
+            labels: ['Camera', 'Battery', 'Display', 'Performance', 'Design'],
+            datasets: [{
+              label: 'Brand A',
+              data: [8.5, 9.2, 8.8, 9.0, 8.7],
+              backgroundColor: 'rgba(26, 35, 126, 0.2)',
+              borderColor: 'rgba(26, 35, 126, 1)',
+              borderWidth: 2,
+              pointBackgroundColor: 'rgba(26, 35, 126, 1)',
+              pointRadius: 4
+            }, {
+              label: 'Brand B',
+              data: [9.0, 8.5, 9.2, 8.8, 9.1],
+              backgroundColor: 'rgba(0, 121, 107, 0.2)',
+              borderColor: 'rgba(0, 121, 107, 1)',
+              borderWidth: 2,
+              pointBackgroundColor: 'rgba(0, 121, 107, 1)',
+              pointRadius: 4
+            }, {
+              label: 'Brand C',
+              data: [8.8, 8.9, 8.5, 9.3, 8.6],
+              backgroundColor: 'rgba(255, 109, 0, 0.2)',
+              borderColor: 'rgba(255, 109, 0, 1)',
+              borderWidth: 2,
+              pointBackgroundColor: 'rgba(255, 109, 0, 1)',
+              pointRadius: 4
+            }]
+          };
+          
+          const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'top',
+              }
+            },
+            scales: {
+              r: {
+                min: 7,
+                max: 10,
+                ticks: {
+                  stepSize: 1
+                }
+              }
+            }
+          };
+          
+          new Chart(ctx, {
+            type: 'radar',
+            data: data,
+            options: options
+          });
+        }
+
+        function createMarketShareChart() {
+          const ctx = document.getElementById('marketShareChart').getContext('2d');
+          
+          const data = {
+            labels: ['Brand A', 'Brand B', 'Brand C', 'Brand D', 'Others'],
+            datasets: [{
+              label: 'Market Share (%)',
+              data: [32, 28, 18, 12, 10],
+              backgroundColor: [
+                'rgba(26, 35, 126, 0.7)',
+                'rgba(0, 121, 107, 0.7)',
+                'rgba(255, 109, 0, 0.7)',
+                'rgba(156, 39, 176, 0.7)',
+                'rgba(3, 169, 244, 0.7)'
+              ],
+              borderWidth: 1
+            }]
+          };
+          
+          const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'right',
+              }
+            }
+          };
+          
+          new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: options
+          });
+        }
+
+        // Initialize all dashboards
+        function initializeVisualizations() {
+          // Create shipping dashboard
+          if (document.getElementById('shipping-dashboard')) {
+            createShippingDashboard('shipping-dashboard');
+          }
+          
+          // Create manufacturing dashboard
+          if (document.getElementById('manufacturing-dashboard')) {
+            createManufacturingDashboard('manufacturing-dashboard');
+          }
+          
+          // Create competitive dashboard
+          if (document.getElementById('competitive-dashboard')) {
+            createCompetitiveAnalysisDashboard('competitive-dashboard');
+          }
+        }
         
         // GhibliCharacter class
         class GhibliCharacter {

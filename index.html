@@ -180,16 +180,24 @@
         .hero-content {
             position: relative;
             z-index: 1;
+            width: 60%;
         }
         
-        .hero-img {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--light-text);
-            box-shadow: var(--box-shadow);
-            margin-bottom: 2rem;
+        .hero-image-container {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 35%;
+            max-width: 400px;
+            z-index: 2;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
         }
         
         .hero h1 {
@@ -497,6 +505,57 @@
             color: var(--secondary-color);
         }
         
+        /* Visualization Section */
+        .visualization-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .visualization-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .visualization-desc {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .visualization-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .visualization-card {
+            background-color: rgba(0, 0, 0, 0.02);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .visualization-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .visualization-card h4 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            text-align: center;
+        }
+        
+        .chart-container {
+            height: 250px;
+            position: relative;
+        }
+        
         /* Education Section */
         .education-grid {
             display: grid;
@@ -532,6 +591,177 @@
             font-weight: bold;
             color: var(--secondary-color);
             margin-bottom: 1rem;
+        }
+        
+        /* Platforms Section */
+        .platforms-section {
+            margin-top: 5rem;
+        }
+        
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .platform-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .platform-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(26, 35, 126, 0.1);
+            border-radius: 50%;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .platform-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .platform-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .platform-content p {
+            margin-bottom: 1.5rem;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .platform-link {
+            display: block;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 0.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: auto;
+        }
+        
+        .platform-link:hover {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+        }
+        
+        /* Mentorship Section */
+        .mentorship-section {
+            margin-top: 5rem;
+        }
+        
+        .mentorship-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .mentorship-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .mentorship-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mentorship-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .service-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(26, 35, 126, 0.1);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .service-card h4 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-card p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-price {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .topmate-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--accent-color);
         }
         
         /* Contact Section */
@@ -840,47 +1070,11 @@
             --card-bg: #1e1e1e;
         }
         
-        /* Dashboard Styles */
-        .dashboard-container {
-          margin-top: 3rem;
-          padding: 2rem;
-          background-color: var(--card-bg);
-          border-radius: var(--border-radius);
-          box-shadow: var(--box-shadow);
-        }
-        
-        .dashboard-title {
-          font-size: 1.8rem;
-          margin-bottom: 1rem;
-          color: var(--primary-color);
-        }
-        
-        .dashboard-desc {
-          margin-bottom: 2rem;
-          color: var(--text-color);
-        }
-        
-        .charts-container {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 2rem;
-        }
-        
-        .chart-section {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        
-        .chart-section h4 {
-          margin-bottom: 1rem;
-          color: var(--accent-color);
-        }
-        
         /* Responsive Design */
         @media screen and (max-width: 1024px) {
             .about-content,
-            .contact-content {
+            .contact-content,
+            .mentorship-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
@@ -908,8 +1102,14 @@
                 left: 15px;
             }
             
-            .charts-container {
-              grid-template-columns: 1fr;
+            .hero-content {
+                width: 100%;
+                padding-right: 40%;
+            }
+            
+            .hero-image-container {
+                width: 35%;
+                max-width: 300px;
             }
         }
         
@@ -974,16 +1174,40 @@
                 width: 100%;
                 text-align: center;
             }
+            
+            .visualization-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                text-align: center;
+                margin: 0 auto;
+            }
+            
+            .hero-image-container {
+                position: relative;
+                width: 70%;
+                max-width: 250px;
+                margin: 2rem auto 0;
+                top: auto;
+                right: auto;
+                transform: none;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+            
+            .platforms-grid,
+            .mentorship-services {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media screen and (max-width: 480px) {
             .section {
                 padding: 3rem 0;
-            }
-            
-            .hero-img {
-                width: 200px;
-                height: 200px;
             }
             
             .hero h1 {
@@ -996,6 +1220,16 @@
             
             .counter-container {
                 grid-template-columns: 1fr;
+            }
+            
+            .hero-image-container {
+                width: 80%;
+                max-width: 200px;
+            }
+            
+            .topmate-stats {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
     </style>
@@ -1011,7 +1245,8 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
-                    <li><a href="#education">Education</a></li>
+                    <li><a href="#platforms">Platforms</a></li>
+                    <li><a href="#mentorship">Mentorship</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="language-switcher">
@@ -1045,15 +1280,17 @@
                         <a href="#contact" class="btn btn-outline">Contact Me</a>
                     </div>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/in/dynamo14324" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Dynamo14324" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://instagram.com/yogesh_jadhav" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://quora.com/profile/Yogesh-Jadhav" target="_blank"><i class="fab fa-quora"></i></a>
                     </div>
                 </div>
             </div>
+            <div class="hero-image-container animate">
+                <img src="ghibli_character.png" alt="Yogesh Jadhav - Ghibli Style" class="hero-image">
+            </div>
         </div>
-        <div id="ghibli-character-container"></div>
     </section>
 
     <!-- About Section -->
@@ -1199,8 +1436,34 @@ def train_model(X, y):<br>
                     <div>Team Members Trained</div>
                 </div>
                 <div class="counter-item animate">
-                    <div class="counter" data-count="8">0</div>
-                    <div>Certifications</div>
+                    <div class="counter" data-count="14000">0</div>
+                    <div>LinkedIn Followers</div>
+                </div>
+            </div>
+            
+            <!-- Data Visualization Section -->
+            <div class="visualization-section animate">
+                <h3 class="visualization-title">Interactive Data Visualizations</h3>
+                <p class="visualization-desc">Explore interactive dashboards showcasing my expertise in data analysis across different industries.</p>
+                <div class="visualization-grid">
+                    <div class="visualization-card">
+                        <h4>Shipping Industry Analytics</h4>
+                        <div class="chart-container">
+                            <canvas id="shippingChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="visualization-card">
+                        <h4>Manufacturing Metrics</h4>
+                        <div class="chart-container">
+                            <canvas id="manufacturingChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="visualization-card">
+                        <h4>Competitive Analysis</h4>
+                        <div class="chart-container">
+                            <canvas id="competitiveChart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1222,7 +1485,6 @@ def train_model(X, y):<br>
                             <li>Configured and maintained an Electronic Logbook (ELB) system to monitor and streamline all operational processes.</li>
                             <li>Trained team members on Power BI and data automation techniques, leading to improved reporting accuracy and significant time savings across departments.</li>
                         </ul>
-                        <div id="shipping-dashboard" class="dashboard-container"></div>
                     </div>
                 </div>
                 <div class="timeline-item animate">
@@ -1235,7 +1497,6 @@ def train_model(X, y):<br>
                             <li>Designed OCR-based Python scripts to extract unstructured data from PDFs and images, achieving 90% accuracy in data capture.</li>
                             <li>Conducted competitive analysis on 700,000–1,000,000 rows of data, delivering actionable insights to Fortune 500 clients.</li>
                         </ul>
-                        <div id="competitive-dashboard" class="dashboard-container"></div>
                     </div>
                 </div>
                 <div class="timeline-item animate">
@@ -1247,7 +1508,6 @@ def train_model(X, y):<br>
                             <li>Automated cross-functional data extraction and key metric tracking using Google Forms, Spreadsheets, Python, and Data Studio—reducing reporting errors by 35%.</li>
                             <li>Implemented automation that boosted production efficiency by 15%.</li>
                         </ul>
-                        <div id="manufacturing-dashboard" class="dashboard-container"></div>
                     </div>
                 </div>
                 <div class="timeline-item animate">
@@ -1341,6 +1601,142 @@ def train_model(X, y):<br>
         </div>
     </section>
 
+    <!-- My Platforms Section -->
+    <section class="section platforms-section" id="platforms">
+        <div class="container">
+            <h2 class="section-title animate">My Projects & Platforms</h2>
+            <div class="platforms-grid">
+                <div class="platform-card animate">
+                    <div class="platform-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="platform-content">
+                        <h3>RiYo Jobs</h3>
+                        <p>Fast, helpful AI chatbot for resume writing and job search assistance.</p>
+                        <a href="https://linktr.ee/riyogesh" target="_blank" class="platform-link">Visit Platform</a>
+                    </div>
+                </div>
+                <div class="platform-card animate">
+                    <div class="platform-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div class="platform-content">
+                        <h3>Salesflow Demo</h3>
+                        <p>LinkedIn automation software for lead generation and networking.</p>
+                        <a href="https://linktr.ee/riyogesh" target="_blank" class="platform-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="platform-card animate">
+                    <div class="platform-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="platform-content">
+                        <h3>RiYo Analytics Blog</h3>
+                        <p>Latest news and insights on technology, data science, and AI/ML developments.</p>
+                        <a href="https://linktr.ee/riyogesh" target="_blank" class="platform-link">Read Blog</a>
+                    </div>
+                </div>
+                <div class="platform-card animate">
+                    <div class="platform-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <div class="platform-content">
+                        <h3>RiYo Jobs Discord</h3>
+                        <p>Join our community for job opportunities, networking, and career advice.</p>
+                        <a href="https://linktr.ee/riyogesh" target="_blank" class="platform-link">Join Community</a>
+                    </div>
+                </div>
+                <div class="platform-card animate">
+                    <div class="platform-icon">
+                        <i class="fab fa-canva"></i>
+                    </div>
+                    <div class="platform-content">
+                        <h3>Canva Profile</h3>
+                        <p>Explore my design templates and creative work on Canva.</p>
+                        <a href="https://linktr.ee/riyogesh" target="_blank" class="platform-link">View Designs</a>
+                    </div>
+                </div>
+                <div class="platform-card animate">
+                    <div class="platform-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="platform-content">
+                        <h3>Basics of Python</h3>
+                        <p>Educational resource for learning Python programming fundamentals.</p>
+                        <a href="https://linktr.ee/riyogesh" target="_blank" class="platform-link">Start Learning</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentorship Section -->
+    <section class="section mentorship-section" id="mentorship">
+        <div class="container">
+            <h2 class="section-title animate">Mentorship & Consultation</h2>
+            <div class="topmate-stats animate">
+                <div class="stat-item">
+                    <div class="stat-value">4.9</div>
+                    <div class="stat-label">Rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100+</div>
+                    <div class="stat-label">Sessions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">24h</div>
+                    <div class="stat-label">Response Time</div>
+                </div>
+            </div>
+            <div class="mentorship-content">
+                <div class="mentorship-text animate">
+                    <h3>Data Science & AI Mentorship</h3>
+                    <p>I am a dedicated data analyst specializing in data science, artificial intelligence, and machine learning, with an MSc in Data Science and Big Data Analytics from the University of Mumbai. My expertise spans programming, data visualization, and cybersecurity, with hands-on experience in environmental data analysis and business development.</p>
+                    <p>I'm passionate about helping others navigate their data science journey. Whether you're looking to break into the field, enhance your skills, or get guidance on specific projects, I offer personalized mentorship sessions to help you achieve your goals.</p>
+                    <a href="https://topmate.io/dynamo_14324" target="_blank" class="btn btn-primary">Book a Session</a>
+                </div>
+                <div class="mentorship-services animate">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4>Priority DM</h4>
+                        <p>Get quick answers to your data science and AI questions via direct message.</p>
+                        <div class="service-price">Free</div>
+                        <a href="https://topmate.io/dynamo_14324" target="_blank" class="btn btn-outline">Book Now</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h4>1:1 Call</h4>
+                        <p>Personalized video consultation for in-depth guidance and mentorship.</p>
+                        <div class="service-price">Custom</div>
+                        <a href="https://topmate.io/dynamo_14324" target="_blank" class="btn btn-outline">Book Now</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h4>Job Referrals</h4>
+                        <p>Get access to job opportunities and referrals in the data science field.</p>
+                        <div class="service-price">₹239</div>
+                        <a href="https://topmate.io/dynamo_14324" target="_blank" class="btn btn-outline">Book Now</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h4>HR Email List</h4>
+                        <p>List of HR and recruitment contacts from top companies.</p>
+                        <div class="service-price">₹431</div>
+                        <a href="https://topmate.io/dynamo_14324" target="_blank" class="btn btn-outline">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Education Section -->
     <section class="section" id="education">
         <div class="container">
@@ -1351,6 +1747,12 @@ def train_model(X, y):<br>
                     <div class="institution">University of Mumbai</div>
                     <div class="date">2018 - 2020</div>
                     <p>Specialized in machine learning algorithms and statistical analysis. Completed thesis on predictive modeling for industrial applications.</p>
+                </div>
+                <div class="education-card animate">
+                    <h3>Master of Science in Information Technology</h3>
+                    <div class="institution">IDOL, University of Mumbai</div>
+                    <div class="date">Current</div>
+                    <p>Currently pursuing further studies to expand knowledge in information technology and advanced computing.</p>
                 </div>
                 <div class="education-card animate">
                     <h3>Bachelor of Engineering in Computer Science</h3>
@@ -1441,14 +1843,17 @@ def train_model(X, y):<br>
                     <a href="#about">About</a>
                     <a href="#experience">Experience</a>
                     <a href="#projects">Projects</a>
-                    <a href="#education">Education</a>
+                    <a href="#platforms">Platforms</a>
+                    <a href="#mentorship">Mentorship</a>
                     <a href="#contact">Contact</a>
                 </div>
                 <div class="footer-social">
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/dynamo14324" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Dynamo14324" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://instagram.com/yogesh_jadhav" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://quora.com/profile/Yogesh-Jadhav" target="_blank"><i class="fab fa-quora"></i></a>
+                    <a href="https://topmate.io/dynamo_14324" target="_blank"><i class="fas fa-user-friends"></i></a>
+                    <a href="https://linktr.ee/riyogesh" target="_blank"><i class="fas fa-link"></i></a>
                 </div>
                 <div class="footer-bottom">
                     <p>&copy; 2025 Yogesh Jadhav. All Rights Reserved.</p>
@@ -1468,9 +1873,6 @@ def train_model(X, y):<br>
     <!-- Chart.js for Data Visualizations -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- Three.js library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
     <!-- Main JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1703,791 +2105,119 @@ def train_model(X, y):<br>
             initializeVisualizations();
         });
         
-        // Shipping Industry Dashboard
-        function createShippingDashboard(containerId) {
-          // Create the dashboard container
-          const container = document.getElementById(containerId);
-          
-          // Create canvas elements for charts
-          const procurementCanvas = document.createElement('canvas');
-          procurementCanvas.id = 'procurementChart';
-          procurementCanvas.width = 400;
-          procurementCanvas.height = 250;
-          
-          const equipmentCanvas = document.createElement('canvas');
-          equipmentCanvas.id = 'equipmentChart';
-          equipmentCanvas.width = 400;
-          equipmentCanvas.height = 250;
-          
-          const elbCanvas = document.createElement('canvas');
-          elbCanvas.id = 'elbChart';
-          elbCanvas.width = 400;
-          elbCanvas.height = 250;
-          
-          // Create dashboard layout
-          const dashboardTitle = document.createElement('h3');
-          dashboardTitle.textContent = 'Shipping Industry Analytics';
-          dashboardTitle.className = 'dashboard-title';
-          
-          const dashboardDesc = document.createElement('p');
-          dashboardDesc.textContent = 'Interactive visualizations of fleet data, procurement metrics, and equipment performance.';
-          dashboardDesc.className = 'dashboard-desc';
-          
-          const chartsContainer = document.createElement('div');
-          chartsContainer.className = 'charts-container';
-          
-          // Create chart sections
-          const procurementSection = document.createElement('div');
-          procurementSection.className = 'chart-section';
-          const procurementTitle = document.createElement('h4');
-          procurementTitle.textContent = 'Procurement Analysis';
-          procurementSection.appendChild(procurementTitle);
-          procurementSection.appendChild(procurementCanvas);
-          
-          const equipmentSection = document.createElement('div');
-          equipmentSection.className = 'chart-section';
-          const equipmentTitle = document.createElement('h4');
-          equipmentTitle.textContent = 'Equipment Performance';
-          equipmentSection.appendChild(equipmentTitle);
-          equipmentSection.appendChild(equipmentCanvas);
-          
-          const elbSection = document.createElement('div');
-          elbSection.className = 'chart-section';
-          const elbTitle = document.createElement('h4');
-          elbTitle.textContent = 'ELB Compliance Tracking';
-          elbSection.appendChild(elbTitle);
-          elbSection.appendChild(elbCanvas);
-          
-          // Assemble the dashboard
-          chartsContainer.appendChild(procurementSection);
-          chartsContainer.appendChild(equipmentSection);
-          chartsContainer.appendChild(elbSection);
-          
-          container.appendChild(dashboardTitle);
-          container.appendChild(dashboardDesc);
-          container.appendChild(chartsContainer);
-          
-          // Create the charts
-          createProcurementChart();
-          createEquipmentChart();
-          createELBChart();
-        }
-
-        function createProcurementChart() {
-          const ctx = document.getElementById('procurementChart').getContext('2d');
-          
-          const data = {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [{
-              label: 'Procurement Cost (USD)',
-              data: [125000, 118000, 132000, 145000, 138000, 129000],
-              backgroundColor: 'rgba(26, 35, 126, 0.2)',
-              borderColor: 'rgba(26, 35, 126, 1)',
-              borderWidth: 2,
-              tension: 0.4
-            }, {
-              label: 'Cost Savings (USD)',
-              data: [12500, 15400, 18200, 21500, 24800, 28200],
-              backgroundColor: 'rgba(0, 121, 107, 0.2)',
-              borderColor: 'rgba(0, 121, 107, 1)',
-              borderWidth: 2,
-              tension: 0.4
-            }]
-          };
-          
-          const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                position: 'top',
-              },
-              tooltip: {
-                mode: 'index',
-                intersect: false,
-              }
-            },
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          };
-          
-          new Chart(ctx, {
-            type: 'line',
-            data: data,
-            options: options
-          });
-        }
-
-        function createEquipmentChart() {
-          const ctx = document.getElementById('equipmentChart').getContext('2d');
-          
-          const data = {
-            labels: ['Engines', 'Pumps', 'Generators', 'HVAC', 'Navigation', 'Other'],
-            datasets: [{
-              label: 'Maintenance Frequency',
-              data: [28, 35, 15, 22, 12, 18],
-              backgroundColor: [
-                'rgba(26, 35, 126, 0.7)',
-                'rgba(0, 121, 107, 0.7)',
-                'rgba(255, 109, 0, 0.7)',
-                'rgba(156, 39, 176, 0.7)',
-                'rgba(3, 169, 244, 0.7)',
-                'rgba(139, 195, 74, 0.7)'
-              ],
-              borderWidth: 1
-            }]
-          };
-          
-          const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                position: 'right',
-              }
-            }
-          };
-          
-          new Chart(ctx, {
-            type: 'pie',
-            data: data,
-            options: options
-          });
-        }
-
-        function createELBChart() {
-          const ctx = document.getElementById('elbChart').getContext('2d');
-          
-          const data = {
-            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-            datasets: [{
-              label: 'Compliance Rate (%)',
-              data: [78, 85, 92, 97],
-              backgroundColor: 'rgba(255, 109, 0, 0.2)',
-              borderColor: 'rgba(255, 109, 0, 1)',
-              borderWidth: 2
-            }, {
-              label: 'Data Accuracy (%)',
-              data: [82, 88, 94, 98],
-              backgroundColor: 'rgba(3, 169, 244, 0.2)',
-              borderColor: 'rgba(3, 169, 244, 1)',
-              borderWidth: 2
-            }]
-          };
-          
-          const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                position: 'top',
-              }
-            },
-            scales: {
-              y: {
-                min: 70,
-                max: 100
-              }
-            }
-          };
-          
-          new Chart(ctx, {
-            type: 'bar',
-            data: data,
-            options: options
-          });
-        }
-
-        // Manufacturing Industry Dashboard
-        function createManufacturingDashboard(containerId) {
-          // Create the dashboard container
-          const container = document.getElementById(containerId);
-          
-          // Create canvas elements for charts
-          const productionCanvas = document.createElement('canvas');
-          productionCanvas.id = 'productionChart';
-          productionCanvas.width = 400;
-          productionCanvas.height = 250;
-          
-          const distributionCanvas = document.createElement('canvas');
-          distributionCanvas.id = 'distributionChart';
-          distributionCanvas.width = 400;
-          distributionCanvas.height = 250;
-          
-          const efficiencyCanvas = document.createElement('canvas');
-          efficiencyCanvas.id = 'efficiencyChart';
-          efficiencyCanvas.width = 400;
-          efficiencyCanvas.height = 250;
-          
-          // Create dashboard layout
-          const dashboardTitle = document.createElement('h3');
-          dashboardTitle.textContent = 'Manufacturing Analytics';
-          dashboardTitle.className = 'dashboard-title';
-          
-          const dashboardDesc = document.createElement('p');
-          dashboardDesc.textContent = 'Production metrics, regional distribution, and efficiency analysis for plastic manufacturing.';
-          dashboardDesc.className = 'dashboard-desc';
-          
-          const chartsContainer = document.createElement('div');
-          chartsContainer.className = 'charts-container';
-          
-          // Create chart sections
-          const productionSection = document.createElement('div');
-          productionSection.className = 'chart-section';
-          const productionTitle = document.createElement('h4');
-          productionTitle.textContent = 'Production by Product Type';
-          productionSection.appendChild(productionTitle);
-          productionSection.appendChild(productionCanvas);
-          
-          const distributionSection = document.createElement('div');
-          distributionSection.className = 'chart-section';
-          const distributionTitle = document.createElement('h4');
-          distributionTitle.textContent = 'Regional Distribution';
-          distributionSection.appendChild(distributionTitle);
-          distributionSection.appendChild(distributionCanvas);
-          
-          const efficiencySection = document.createElement('div');
-          efficiencySection.className = 'chart-section';
-          const efficiencyTitle = document.createElement('h4');
-          efficiencyTitle.textContent = 'Production Efficiency';
-          efficiencySection.appendChild(efficiencyTitle);
-          efficiencySection.appendChild(efficiencyCanvas);
-          
-          // Assemble the dashboard
-          chartsContainer.appendChild(productionSection);
-          chartsContainer.appendChild(distributionSection);
-          chartsContainer.appendChild(efficiencySection);
-          
-          container.appendChild(dashboardTitle);
-          container.appendChild(dashboardDesc);
-          container.appendChild(chartsContainer);
-          
-          // Create the charts
-          createProductionChart();
-          createDistributionChart();
-          createEfficiencyChart();
-        }
-
-        function createProductionChart() {
-          const ctx = document.getElementById('productionChart').getContext('2d');
-          
-          const data = {
-            labels: ['PVC', 'HDPE', 'LDPE', 'Dripping', 'Other'],
-            datasets: [{
-              label: 'Production Volume (tons)',
-              data: [1250, 980, 750, 620, 480],
-              backgroundColor: [
-                'rgba(26, 35, 126, 0.7)',
-                'rgba(0, 121, 107, 0.7)',
-                'rgba(255, 109, 0, 0.7)',
-                'rgba(156, 39, 176, 0.7)',
-                'rgba(3, 169, 244, 0.7)'
-              ],
-              borderWidth: 1
-            }]
-          };
-          
-          const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                position: 'right',
-              }
-            }
-          };
-          
-          new Chart(ctx, {
-            type: 'doughnut',
-            data: data,
-            options: options
-          });
-        }
-
-        function createDistributionChart() {
-          const ctx = document.getElementById('distributionChart').getContext('2d');
-          
-          const data = {
-            labels: ['North', 'South', 'East', 'West', 'Central'],
-            datasets: [{
-              label: 'Distribution (tons)',
-              data: [850, 1200, 720, 950, 680],
-              backgroundColor: 'rgba(0, 121, 107, 0.2)',
-              borderColor: 'rgba(0, 121, 107, 1)',
-              borderWidth: 2
-            }]
-          };
-          
-          const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            indexAxis: 'y',
-            plugins: {
-              legend: {
-                display: false,
-              }
-            },
-            scales: {
-              x: {
-                beginAtZero: true
-              }
-            }
-          };
-          
-          new Chart(ctx, {
-            type: 'bar',
-            data: data,
-            options: options
-          });
-        }
-
-        function createEfficiencyChart() {
-          const ctx = document.getElementById('efficiencyChart').getContext('2d');
-          
-          const data = {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            datasets: [{
-              label: 'Efficiency (%)',
-              data: [72, 75, 78, 82, 85, 88, 90, 91, 92, 93, 94, 95],
-              backgroundColor: 'rgba(255, 109, 0, 0.2)',
-              borderColor: 'rgba(255, 109, 0, 1)',
-              borderWidth: 2,
-              tension: 0.4,
-              fill: true
-            }]
-          };
-          
-          const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                display: false,
-              }
-            },
-            scales: {
-              y: {
-                min: 70,
-                max: 100
-              }
-            }
-          };
-          
-          new Chart(ctx, {
-            type: 'line',
-            data: data,
-            options: options
-          });
-        }
-
-        // Competitive Analysis Dashboard
-        function createCompetitiveAnalysisDashboard(containerId) {
-          // Create the dashboard container
-          const container = document.getElementById(containerId);
-          
-          // Create canvas elements for charts
-          const priceComparisonCanvas = document.createElement('canvas');
-          priceComparisonCanvas.id = 'priceComparisonChart';
-          priceComparisonCanvas.width = 400;
-          priceComparisonCanvas.height = 250;
-          
-          const featureComparisonCanvas = document.createElement('canvas');
-          featureComparisonCanvas.id = 'featureComparisonChart';
-          featureComparisonCanvas.width = 400;
-          featureComparisonCanvas.height = 250;
-          
-          const marketShareCanvas = document.createElement('canvas');
-          marketShareCanvas.id = 'marketShareChart';
-          marketShareCanvas.width = 400;
-          marketShareCanvas.height = 250;
-          
-          // Create dashboard layout
-          const dashboardTitle = document.createElement('h3');
-          dashboardTitle.textContent = 'Competitive Analysis';
-          dashboardTitle.className = 'dashboard-title';
-          
-          const dashboardDesc = document.createElement('p');
-          dashboardDesc.textContent = 'Price comparison, feature analysis, and market share for consumer electronics in South Asian markets.';
-          dashboardDesc.className = 'dashboard-desc';
-          
-          const chartsContainer = document.createElement('div');
-          chartsContainer.className = 'charts-container';
-          
-          // Create chart sections
-          const priceComparisonSection = document.createElement('div');
-          priceComparisonSection.className = 'chart-section';
-          const priceComparisonTitle = document.createElement('h4');
-          priceComparisonTitle.textContent = 'Price Comparison';
-          priceComparisonSection.appendChild(priceComparisonTitle);
-          priceComparisonSection.appendChild(priceComparisonCanvas);
-          
-          const featureComparisonSection = document.createElement('div');
-          featureComparisonSection.className = 'chart-section';
-          const featureComparisonTitle = document.createElement('h4');
-          featureComparisonTitle.textContent = 'Feature Comparison';
-          featureComparisonSection.appendChild(featureComparisonTitle);
-          featureComparisonSection.appendChild(featureComparisonCanvas);
-          
-          const marketShareSection = document.createElement('div');
-          marketShareSection.className = 'chart-section';
-          const marketShareTitle = document.createElement('h4');
-          marketShareTitle.textContent = 'Market Share';
-          marketShareSection.appendChild(marketShareTitle);
-          marketShareSection.appendChild(marketShareCanvas);
-          
-          // Assemble the dashboard
-          chartsContainer.appendChild(priceComparisonSection);
-          chartsContainer.appendChild(featureComparisonSection);
-          chartsContainer.appendChild(marketShareSection);
-          
-          container.appendChild(dashboardTitle);
-          container.appendChild(dashboardDesc);
-          container.appendChild(chartsContainer);
-          
-          // Create the charts
-          createPriceComparisonChart();
-          createFeatureComparisonChart();
-          createMarketShareChart();
-        }
-
-        function createPriceComparisonChart() {
-          const ctx = document.getElementById('priceComparisonChart').getContext('2d');
-          
-          const data = {
-            labels: ['Entry', 'Mid-range', 'Premium', 'Ultra Premium'],
-            datasets: [{
-              label: 'Brand A',
-              data: [199, 399, 699, 999],
-              backgroundColor: 'rgba(26, 35, 126, 0.2)',
-              borderColor: 'rgba(26, 35, 126, 1)',
-              borderWidth: 2
-            }, {
-              label: 'Brand B',
-              data: [179, 379, 649, 949],
-              backgroundColor: 'rgba(0, 121, 107, 0.2)',
-              borderColor: 'rgba(0, 121, 107, 1)',
-              borderWidth: 2
-            }, {
-              label: 'Brand C',
-              data: [219, 419, 729, 1049],
-              backgroundColor: 'rgba(255, 109, 0, 0.2)',
-              borderColor: 'rgba(255, 109, 0, 1)',
-              borderWidth: 2
-            }]
-          };
-          
-          const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                position: 'top',
-              }
-            },
-            scales: {
-              y: {
-                beginAtZero: true,
-                title: {
-                  display: true,
-                  text: 'Price (USD)'
-                }
-              }
-            }
-          };
-          
-          new Chart(ctx, {
-            type: 'bar',
-            data: data,
-            options: options
-          });
-        }
-
-        function createFeatureComparisonChart() {
-          const ctx = document.getElementById('featureComparisonChart').getContext('2d');
-          
-          const data = {
-            labels: ['Camera', 'Battery', 'Display', 'Performance', 'Design'],
-            datasets: [{
-              label: 'Brand A',
-              data: [8.5, 9.2, 8.8, 9.0, 8.7],
-              backgroundColor: 'rgba(26, 35, 126, 0.2)',
-              borderColor: 'rgba(26, 35, 126, 1)',
-              borderWidth: 2,
-              pointBackgroundColor: 'rgba(26, 35, 126, 1)',
-              pointRadius: 4
-            }, {
-              label: 'Brand B',
-              data: [9.0, 8.5, 9.2, 8.8, 9.1],
-              backgroundColor: 'rgba(0, 121, 107, 0.2)',
-              borderColor: 'rgba(0, 121, 107, 1)',
-              borderWidth: 2,
-              pointBackgroundColor: 'rgba(0, 121, 107, 1)',
-              pointRadius: 4
-            }, {
-              label: 'Brand C',
-              data: [8.8, 8.9, 8.5, 9.3, 8.6],
-              backgroundColor: 'rgba(255, 109, 0, 0.2)',
-              borderColor: 'rgba(255, 109, 0, 1)',
-              borderWidth: 2,
-              pointBackgroundColor: 'rgba(255, 109, 0, 1)',
-              pointRadius: 4
-            }]
-          };
-          
-          const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                position: 'top',
-              }
-            },
-            scales: {
-              r: {
-                min: 7,
-                max: 10,
-                ticks: {
-                  stepSize: 1
-                }
-              }
-            }
-          };
-          
-          new Chart(ctx, {
-            type: 'radar',
-            data: data,
-            options: options
-          });
-        }
-
-        function createMarketShareChart() {
-          const ctx = document.getElementById('marketShareChart').getContext('2d');
-          
-          const data = {
-            labels: ['Brand A', 'Brand B', 'Brand C', 'Brand D', 'Others'],
-            datasets: [{
-              label: 'Market Share (%)',
-              data: [32, 28, 18, 12, 10],
-              backgroundColor: [
-                'rgba(26, 35, 126, 0.7)',
-                'rgba(0, 121, 107, 0.7)',
-                'rgba(255, 109, 0, 0.7)',
-                'rgba(156, 39, 176, 0.7)',
-                'rgba(3, 169, 244, 0.7)'
-              ],
-              borderWidth: 1
-            }]
-          };
-          
-          const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                position: 'right',
-              }
-            }
-          };
-          
-          new Chart(ctx, {
-            type: 'pie',
-            data: data,
-            options: options
-          });
-        }
-
-        // Initialize all dashboards
+        // Data Visualization Functions
         function initializeVisualizations() {
-          // Create shipping dashboard
-          if (document.getElementById('shipping-dashboard')) {
-            createShippingDashboard('shipping-dashboard');
-          }
-          
-          // Create manufacturing dashboard
-          if (document.getElementById('manufacturing-dashboard')) {
-            createManufacturingDashboard('manufacturing-dashboard');
-          }
-          
-          // Create competitive dashboard
-          if (document.getElementById('competitive-dashboard')) {
-            createCompetitiveAnalysisDashboard('competitive-dashboard');
-          }
+            // Create Shipping Industry Chart
+            const shippingCtx = document.getElementById('shippingChart').getContext('2d');
+            new Chart(shippingCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Procurement Cost',
+                        data: [125000, 118000, 132000, 145000, 138000, 129000],
+                        backgroundColor: 'rgba(26, 35, 126, 0.2)',
+                        borderColor: 'rgba(26, 35, 126, 1)',
+                        borderWidth: 2,
+                        tension: 0.4
+                    }, {
+                        label: 'Cost Savings',
+                        data: [12500, 15400, 18200, 21500, 24800, 28200],
+                        backgroundColor: 'rgba(0, 121, 107, 0.2)',
+                        borderColor: 'rgba(0, 121, 107, 1)',
+                        borderWidth: 2,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // Create Manufacturing Chart
+            const manufacturingCtx = document.getElementById('manufacturingChart').getContext('2d');
+            new Chart(manufacturingCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['PVC', 'HDPE', 'LDPE', 'Dripping', 'Other'],
+                    datasets: [{
+                        label: 'Production Volume',
+                        data: [1250, 980, 750, 620, 480],
+                        backgroundColor: [
+                            'rgba(26, 35, 126, 0.7)',
+                            'rgba(0, 121, 107, 0.7)',
+                            'rgba(255, 109, 0, 0.7)',
+                            'rgba(156, 39, 176, 0.7)',
+                            'rgba(3, 169, 244, 0.7)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        }
+                    }
+                }
+            });
+            
+            // Create Competitive Analysis Chart
+            const competitiveCtx = document.getElementById('competitiveChart').getContext('2d');
+            new Chart(competitiveCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Camera', 'Battery', 'Display', 'Performance', 'Design'],
+                    datasets: [{
+                        label: 'Brand A',
+                        data: [8.5, 9.2, 8.8, 9.0, 8.7],
+                        backgroundColor: 'rgba(26, 35, 126, 0.2)',
+                        borderColor: 'rgba(26, 35, 126, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(26, 35, 126, 1)',
+                        pointRadius: 4
+                    }, {
+                        label: 'Brand B',
+                        data: [9.0, 8.5, 9.2, 8.8, 9.1],
+                        backgroundColor: 'rgba(0, 121, 107, 0.2)',
+                        borderColor: 'rgba(0, 121, 107, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(0, 121, 107, 1)',
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            min: 7,
+                            max: 10,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
         }
-        
-        // GhibliCharacter class
-        class GhibliCharacter {
-          constructor(containerId, imageUrl) {
-            this.containerId = containerId;
-            this.imageUrl = imageUrl;
-            this.container = document.getElementById(containerId);
-            this.scene = null;
-            this.camera = null;
-            this.renderer = null;
-            this.character = null;
-            this.currentAnimation = 'idle';
-            this.animationMixer = null;
-            this.clock = new THREE.Clock();
-            
-            this.init();
-          }
-          
-          init() {
-            // Create scene
-            this.scene = new THREE.Scene();
-            
-            // Create camera
-            this.camera = new THREE.PerspectiveCamera(75, this.container.clientWidth / this.container.clientHeight, 0.1, 1000);
-            this.camera.position.z = 5;
-            
-            // Create renderer
-            this.renderer = new THREE.WebGLRenderer({ alpha: true });
-            this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
-            this.renderer.setClearColor(0x000000, 0);
-            this.container.appendChild(this.renderer.domElement);
-            
-            // Create character
-            this.createCharacter();
-            
-            // Add ambient light
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-            this.scene.add(ambientLight);
-            
-            // Add directional light
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-            directionalLight.position.set(1, 1, 1);
-            this.scene.add(directionalLight);
-            
-            // Handle window resize
-            window.addEventListener('resize', () => this.onWindowResize());
-            
-            // Start animation loop
-            this.animate();
-          }
-          
-          createCharacter() {
-            // Create a plane geometry for the character
-            const geometry = new THREE.PlaneGeometry(2.5, 5);
-            
-            // Load the texture
-            const textureLoader = new THREE.TextureLoader();
-            const texture = textureLoader.load(this.imageUrl);
-            
-            // Create material with the texture
-            const material = new THREE.MeshBasicMaterial({
-              map: texture,
-              transparent: true,
-              side: THREE.DoubleSide
-            });
-            
-            // Create the character mesh
-            this.character = new THREE.Mesh(geometry, material);
-            this.scene.add(this.character);
-          }
-          
-          animate() {
-            requestAnimationFrame(() => this.animate());
-            
-            // Update animation based on current state
-            this.updateAnimation();
-            
-            // Render the scene
-            this.renderer.render(this.scene, this.camera);
-          }
-          
-          updateAnimation() {
-            const delta = this.clock.getDelta();
-            
-            switch (this.currentAnimation) {
-              case 'idle':
-                // Gentle floating motion
-                this.character.position.y = Math.sin(Date.now() * 0.001) * 0.1;
-                break;
-              case 'wave':
-                // Waving animation
-                this.character.rotation.z = Math.sin(Date.now() * 0.003) * 0.1;
-                break;
-              case 'data':
-                // Data analysis animation
-                this.character.position.x = Math.sin(Date.now() * 0.002) * 0.2;
-                break;
-              case 'coding':
-                // Coding animation
-                this.character.position.y = Math.sin(Date.now() * 0.004) * 0.15;
-                this.character.position.x = Math.cos(Date.now() * 0.002) * 0.1;
-                break;
-              case 'ai':
-                // AI animation
-                this.character.rotation.y = Math.sin(Date.now() * 0.002) * 0.2;
-                break;
-            }
-          }
-          
-          setAnimation(animationName) {
-            this.currentAnimation = animationName;
-          }
-          
-          onWindowResize() {
-            this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
-            this.camera.updateProjectionMatrix();
-            this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
-          }
-        }
-
-        // Wait for DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-          // Create character container if it doesn't exist
-          if (!document.getElementById('ghibli-character-container')) {
-            const container = document.createElement('div');
-            container.id = 'ghibli-character-container';
-            container.style.position = 'absolute';
-            container.style.top = '50%';
-            container.style.right = '5%';
-            container.style.width = '250px';
-            container.style.height = '500px';
-            container.style.transform = 'translateY(-50%)';
-            container.style.zIndex = '10';
-            document.querySelector('.hero').appendChild(container);
-          }
-          
-          // Initialize the character
-          const character = new GhibliCharacter('ghibli-character-container', 'ghibli_character.png');
-          
-          // Add event listeners to change animations based on section visibility
-          document.addEventListener('scroll', () => {
-            const scrollPosition = window.scrollY;
-            
-            // Get positions of different sections
-            const heroSection = document.querySelector('.hero').offsetTop;
-            const aboutSection = document.querySelector('#about').offsetTop;
-            const experienceSection = document.querySelector('#experience').offsetTop;
-            const projectsSection = document.querySelector('#projects').offsetTop;
-            
-            // Change animation based on visible section
-            if (scrollPosition < aboutSection - 200) {
-              character.setAnimation('wave');
-            } else if (scrollPosition < experienceSection - 200) {
-              character.setAnimation('idle');
-            } else if (scrollPosition < projectsSection - 200) {
-              character.setAnimation('data');
-            } else {
-              character.setAnimation('coding');
-            }
-          });
-          
-          // Add event listeners for skill hover effects
-          const aiSkills = document.querySelectorAll('.skill-item:nth-child(3)');
-          aiSkills.forEach(skill => {
-            skill.addEventListener('mouseenter', () => {
-              character.setAnimation('ai');
-            });
-            skill.addEventListener('mouseleave', () => {
-              character.setAnimation('idle');
-            });
-          });
-        });
     </script>
 </body>
 </html>
